@@ -256,13 +256,10 @@ function s:RunNeoTerminal(cmd)
     exec ":bd! ".t:vroom_terminal_bufnr
   end
 
-  let height = winheight(0) * 1/4
-  exec ":belowright " . height . "split"
+  exec ":vertical split"
 
   exec ":terminal " . a:cmd
-  " terminal runs by default in insert mode which kills the buffer after exit,
-  " let's change to normal mode
-  exec ":stopinsert"
+
   let t:vroom_terminal_bufnr = bufnr('%')
 endfunction
 
