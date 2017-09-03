@@ -100,6 +100,10 @@ if !exists("g:vroom_use_zeus")
   let g:vroom_use_zeus = 1
 endif
 
+if !exists("g:vroom_open_right")
+  let g:vroom_open_right = 1
+endif
+
 " }}}
 " Main functions {{{
 
@@ -256,7 +260,12 @@ function s:RunNeoTerminal(cmd)
     exec ":bd! ".t:vroom_terminal_bufnr
   end
 
-  exec ":vertical split"
+  " do we want to have the new window on the right or bottom
+  if g:vroom_open_right
+    exec ":botright vnew"
+  else
+    exec ":botright new"
+  endif
 
   exec ":terminal " . a:cmd
 
